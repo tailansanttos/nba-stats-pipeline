@@ -21,7 +21,7 @@ def extract_data_players() -> pd.DataFrame:
     
     df_final = pd.concat(all_stats, ignore_index=True)
 
-    output_path = Path('../data/raw/nba_players.json')
+    output_path = Path('../data/raw/nba_players.csv')
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df_final.to_csv(output_path, index=False)
 
