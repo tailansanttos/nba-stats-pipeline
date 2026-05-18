@@ -12,7 +12,9 @@ coluns_rename = {'PLAYER':'JOGADOR',
                     'GP':'JOGOS_JOGADOS',
                     'MIN':'MINUTOS',
                     'PF':'FALTAS',
-                    'EFF': 'EFICIENCIA'}
+                    'EFF': 'EFICIENCIA',
+                    'temporada': 'TEMPORADA',
+                    'categoria': 'CATEGORIA'}
 
 def create_dataframe(path_name:str) -> pd.DataFrame:
     print(f'Criando DataFrame do arquivo csv.')
@@ -36,10 +38,10 @@ def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
   # Filtrar jogadores, onde: 
   # ID repete em temporada, é duplicada
   # Se for, pegar a linha onde time = TOV
-  jogadores_temporada_duplicada = df.duplicated(subset=['JOGADOR_ID', 'temporada'], keep=False)
+  jogadores_temporada_duplicada = df.duplicated(subset=['JOGADOR_ID', 'TEMPORADA'], keep=False)
   df_temporada_unica = df[jogadores_temporada_duplicada & (df['TIME'] == 'TOT')]
   
-  df_sem_duplicada = df.drop_duplicates(subset=['JOGADOR_ID', 'temporada'], keep=False)
+  df_sem_duplicada = df.drop_duplicates(subset=['JOGADOR_ID', 'TEMPORADA'], keep=False)
   df_novo = pd.concat([df_temporada_unica, df_sem_duplicada], axis=0)
   return df_novo
            
