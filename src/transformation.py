@@ -58,7 +58,7 @@ def salvar_processado(df: pd.DataFrame):
     df.to_csv(path)
     
 
-def transformation_data():
+def transformation_data() -> pd.DataFrame:
     print(f'Iniciando transformação dos dados.')
     df = create_dataframe(path_name)
     df = rename_columns(df)
